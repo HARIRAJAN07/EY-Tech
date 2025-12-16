@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { checkRfps } from "../service/rfpApi";
+import { checkRfps, analyzeTechnically } from "../service/rfpApi";
+
 
 /* ---------------------------------------------
    AI LOADING MESSAGES
@@ -69,6 +70,20 @@ const Home = () => {
     }
     return `http://127.0.0.1:8000/files/email_rfp/${file}`;
   };
+
+  const handleTechAnalyze = async (fileName) => {
+  try {
+    console.log("⚙️ Running Tech Agent for:", fileName);
+    const res = await analyzeTechnically(fileName);
+    console.log("✅ Tech Agent Result:", res);
+
+    alert("Tech analysis completed. Check console.");
+  } catch (err) {
+    console.error("❌ Tech Agent failed:", err);
+    alert("Technical analysis failed");
+  }
+};
+
 
   return (
     <div style={styles.page}>
@@ -185,6 +200,8 @@ const Home = () => {
                   >
                     View Document →
                   </a>
+                  
+
                 </div>
               </div>
             )}
@@ -314,6 +331,13 @@ const Home = () => {
                       >
                         View Doc →
                       </a>
+                      <button
+                        style={styles.techBtn}
+                        onClick={() => handleTechAnalyze(data.top_3[0].file_name)}
+                      >
+                        Analyze Technically ⚙️
+                      </button>
+
                     </div>
                   </div>
                 ))}
@@ -797,6 +821,20 @@ const styles = {
     fontWeight: 600,
     transition: "all 0.3s ease",
   },
+  techBtn: {
+  marginTop: "10px",
+  padding: "14px",
+  width: "100%",
+  borderRadius: "12px",
+  border: "1px solid rgba(0,245,255,0.3)",
+  background: "rgba(0,245,255,0.08)",
+  color: "#00f5ff",
+  fontSize: "14px",
+  fontWeight: 600,
+  cursor: "pointer",
+  transition: "all 0.3s ease",
+},
+
 };
 
 export default Home;
