@@ -25,3 +25,14 @@ export const calculatePricing = async (finalRecommendation) => {
   );
   return response.data;
 };
+
+export const downloadFinalBid = async (finalBidPayload) => {
+  const response = await axios.post(
+    `${API_BASE}/bid/download`,
+    finalBidPayload,
+    {
+      responseType: "blob"   // 🔑 VERY IMPORTANT FOR PDF
+    }
+  );
+  return response;
+};

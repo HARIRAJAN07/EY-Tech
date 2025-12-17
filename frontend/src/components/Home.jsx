@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { checkRfps, analyzeTechnically, calculatePricing } from "../service/rfpApi";
+import {
+  checkRfps,
+  analyzeTechnically,
+  calculatePricing,
+  downloadFinalBid
+} from "../service/rfpApi";
+
 
 
 
@@ -22,6 +28,9 @@ const Home = () => {
   const [particles, setParticles] = useState([]);
   const [pricingData, setPricingData] = useState(null);
 const [pricingLoading, setPricingLoading] = useState(false);
+const [pricingResult, setPricingResult] = useState(null);
+const [finalBid, setFinalBid] = useState(null);
+
 
 
   /* Generate 3D sphere particles */
@@ -77,32 +86,59 @@ const [pricingLoading, setPricingLoading] = useState(false);
 
   const handleTechAnalyze = async (fileName) => {
   try {
-    setPricingData(null);
-    setPricingLoading(true);
-
     console.log("⚙️ Running Tech Agent for:", fileName);
 
-    // 1️⃣ Run Tech Agent
+    // 1️⃣ TECH AGENT
     const techRes = await analyzeTechnically(fileName);
     console.log("✅ Tech Agent Result:", techRes);
 
-    // 2️⃣ Run Pricing Agent using FINAL TECH OUTPUT
     console.log("💰 Running Pricing Agent...");
+
+    // 2️⃣ PRICING AGENT (SERVICE LAYER – NO AXIOS HERE)
     const pricingRes = await calculatePricing(
       techRes.final_recommendation
     );
 
     console.log("✅ Pricing Result:", pricingRes);
 
-    setPricingData(pricingRes.pricing_summary);
+    setPricingResult(pricingRes.pricing_summary);
+
+    // 3️⃣ FINAL BID PAYLOAD (AGENT CONTRACT)
+    const finalBidPayload = {
+      rfp_file: techRes.rfp_file,
+      technical_requirements: techRes.technical_requirements,
+      final_tech_decision: techRes.final_recommendation,
+      pricing_summary: pricingRes.pricing_summary
+    };
+
+    setFinalBid(finalBidPayload);
 
   } catch (err) {
     console.error("❌ Agent chain failed:", err);
-    alert("Tech / Pricing analysis failed");
-  } finally {
-    setPricingLoading(false);
+    alert("Agent processing failed");
   }
 };
+
+
+const handleDownloadBid = async () => {
+  try {
+    const res = await downloadFinalBid(finalBid);
+
+    const blob = new Blob([res.data], { type: "application/pdf" });
+    const url = window.URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Final_Bid.pdf";
+    a.click();
+
+    window.URL.revokeObjectURL(url);
+  } catch (err) {
+    console.error("❌ Download failed:", err);
+  }
+};
+
+
 
 
 
@@ -221,7 +257,12 @@ const [pricingLoading, setPricingLoading] = useState(false);
                   >
                     View Document →
                   </a>
-                  
+                  <button
+                        style={styles.techBtn}
+                        onClick={() => handleTechAnalyze(data.top_3[0].file_name)}
+                      >
+                        Analyze Technically ⚙️
+                      </button>
 
                 </div>
               </div>
@@ -265,6 +306,12 @@ const [pricingLoading, setPricingLoading] = useState(false);
                   >
                     View Document →
                   </a>
+                  <button
+                        style={styles.techBtn}
+                        onClick={() => handleTechAnalyze(data.top_3[0].file_name)}
+                      >
+                        Analyze Technically ⚙️
+                      </button>
                 </div>
               </div>
             )}
@@ -304,6 +351,12 @@ const [pricingLoading, setPricingLoading] = useState(false);
                   >
                     View Document →
                   </a>
+                  <button
+                        style={styles.techBtn}
+                        onClick={() => handleTechAnalyze(data.top_3[0].file_name)}
+                      >
+                        Analyze Technically ⚙️
+                      </button>
                 </div>
               </div>
             )}
@@ -397,6 +450,21 @@ const [pricingLoading, setPricingLoading] = useState(false);
     </h3>
   </div>
 )}
+{finalBid && (
+  <button
+    style={{
+      ...styles.techBtn,
+      marginTop: "12px",
+      background: "linear-gradient(135deg, #00ff88, #00cc66)",
+      color: "#000",
+      fontWeight: 700
+    }}
+    onClick={handleDownloadBid}
+  >
+    Download Final Bid 📄
+  </button>
+)}
+
 
         </div>
       )}
