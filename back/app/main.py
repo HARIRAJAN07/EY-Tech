@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.Api.rfp_routes import router as rfp_router
 from app.Api.tech_routes import router as tech_router
 from app.Api.pricing_routes import router as pricing_router
+from app.Api.bid_routes import router as bid_router
 
 
 app = FastAPI(title="RFP Intelligence Engine")
@@ -23,6 +24,7 @@ app.add_middleware(
 app.include_router(rfp_router)
 app.include_router(tech_router)
 app.include_router(pricing_router)
+app.include_router(bid_router)
 
 @app.get("/")
 def root():
