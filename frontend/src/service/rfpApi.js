@@ -14,3 +14,14 @@ export const analyzeTechnically = async (fileName) => {
   );
   return response.data;
 };
+
+export const calculatePricing = async (finalRecommendation) => {
+  const response = await axios.post(
+    `${API_BASE}/pricing/calculate`,
+    {
+      final_recommendation: finalRecommendation,
+      quantity: 10
+    }
+  );
+  return response.data;
+};

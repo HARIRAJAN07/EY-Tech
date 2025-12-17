@@ -38,7 +38,7 @@ def decode_mime(s):
 # --------------------------------------------------
 # MAIN FUNCTION (called from API later)
 # --------------------------------------------------
-def fetch_rfp_from_email(limit=20):
+def fetch_rfp_from_email(limit=2):
     print("📩 Connecting to Gmail...")
 
     imap = imaplib.IMAP4_SSL("imap.gmail.com")

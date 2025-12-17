@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { checkRfps, analyzeTechnically } from "../service/rfpApi";
+import { checkRfps, analyzeTechnically, calculatePricing } from "../service/rfpApi";
+
 
 
 /* ---------------------------------------------
@@ -19,6 +20,9 @@ const Home = () => {
   const [data, setData] = useState(null);
   const [showOthers, setShowOthers] = useState(false);
   const [particles, setParticles] = useState([]);
+  const [pricingData, setPricingData] = useState(null);
+const [pricingLoading, setPricingLoading] = useState(false);
+
 
   /* Generate 3D sphere particles */
   useEffect(() => {
@@ -73,16 +77,33 @@ const Home = () => {
 
   const handleTechAnalyze = async (fileName) => {
   try {
-    console.log("⚙️ Running Tech Agent for:", fileName);
-    const res = await analyzeTechnically(fileName);
-    console.log("✅ Tech Agent Result:", res);
+    setPricingData(null);
+    setPricingLoading(true);
 
-    alert("Tech analysis completed. Check console.");
+    console.log("⚙️ Running Tech Agent for:", fileName);
+
+    // 1️⃣ Run Tech Agent
+    const techRes = await analyzeTechnically(fileName);
+    console.log("✅ Tech Agent Result:", techRes);
+
+    // 2️⃣ Run Pricing Agent using FINAL TECH OUTPUT
+    console.log("💰 Running Pricing Agent...");
+    const pricingRes = await calculatePricing(
+      techRes.final_recommendation
+    );
+
+    console.log("✅ Pricing Result:", pricingRes);
+
+    setPricingData(pricingRes.pricing_summary);
+
   } catch (err) {
-    console.error("❌ Tech Agent failed:", err);
-    alert("Technical analysis failed");
+    console.error("❌ Agent chain failed:", err);
+    alert("Tech / Pricing analysis failed");
+  } finally {
+    setPricingLoading(false);
   }
 };
+
 
 
   return (
@@ -344,6 +365,39 @@ const Home = () => {
               </div>
             </div>
           )}
+          {pricingLoading && (
+  <div style={{ textAlign: "center", marginTop: "40px" }}>
+    <h3>💰 Calculating Optimal Price...</h3>
+  </div>
+)}
+
+{pricingData && (
+  <div style={{
+    marginTop: "60px",
+    padding: "30px",
+    borderRadius: "20px",
+    background: "rgba(0,245,255,0.08)",
+    border: "1px solid rgba(0,245,255,0.3)"
+  }}>
+    <h2 style={{ marginBottom: "20px" }}>
+      💰 Pricing Recommendation
+    </h2>
+
+    <p><b>SKU:</b> {pricingData.sku}</p>
+    <p><b>Quantity:</b> {pricingData.quantity} {pricingData.uom}</p>
+    <p><b>Material Cost:</b> ₹{pricingData.material_cost.toLocaleString()}</p>
+    <p><b>Testing Cost:</b> ₹{pricingData.testing_cost.toLocaleString()}</p>
+    <p><b>Packing Cost:</b> ₹{pricingData.packing_cost.toLocaleString()}</p>
+    <p><b>Transport Cost:</b> ₹{pricingData.transport_cost.toLocaleString()}</p>
+
+    <hr style={{ margin: "20px 0", opacity: 0.3 }} />
+
+    <h3>
+      ✅ Total Cost: ₹{pricingData.total_cost.toLocaleString()}
+    </h3>
+  </div>
+)}
+
         </div>
       )}
     </div>
