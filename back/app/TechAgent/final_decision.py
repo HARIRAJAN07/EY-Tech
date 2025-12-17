@@ -3,10 +3,6 @@
 from typing import Dict, List
 
 
-# --------------------------------------------------
-# PUBLIC FUNCTION
-# --------------------------------------------------
-
 def select_final_sku(
     rfp_specs: Dict,
     matched_skus: List[Dict]
@@ -24,6 +20,7 @@ def select_final_sku(
         }
 
     best_score = matched_skus[0]["score_percent"]
+
     top_candidates = [
         sku for sku in matched_skus
         if sku["score_percent"] == best_score
@@ -44,10 +41,20 @@ def select_final_sku(
 
         chosen = sorted(top_candidates, key=voltage_distance)[0]
 
+    # ✅ NORMALIZED, PRICING-READY OUTPUT
     return {
-        "status": "selected",
-        "sku_id": chosen["sku_id"],
-        "score_percent": chosen["score_percent"],
-        "reason": "Highest spec match with closest voltage alignment",
-        "sku_data": chosen["sku_data"]
+        "selected_sku": chosen["sku_id"],
+        "sku_specs": {
+            "product_type": chosen["sku_data"]["product_type"],
+            "voltage_kv": chosen["sku_data"]["voltage_kv"],
+            "conductor": chosen["sku_data"]["conductor"],
+            "cores": chosen["sku_data"]["cores"],
+            "insulation": chosen["sku_data"]["insulation"],
+            "armouring": chosen["sku_data"]["armouring"],
+            "standard": chosen["sku_data"]["standard"],
+        },
+        "decision_meta": {
+            "score_percent": chosen["score_percent"],
+            "reason": "Highest spec match with closest voltage alignment"
+        }
     }
