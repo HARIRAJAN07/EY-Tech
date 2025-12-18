@@ -1,113 +1,113 @@
 <div align="center">
 
-<img src="assets/logo.png" alt="RFP Analyzer Logo" width="180"/>
+<img src="assets/ey-rfp-logo.png" alt="EY RFP Analyzer Logo" width="200" />
 
-### **AI-Driven Multi-Agent System for High-Velocity B2B RFP Decisions**
+### *The AI System That Finally Understands RFPs*
 
-*From reading documents to making decisions — our AI thinks like an enterprise.*
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=18&duration=3000&pause=1000&color=F7C600&center=true&vCenter=true&width=900&lines=From+RFPs+to+Winning+Bids.;Multi-Agent+%7C+Explainable+%7C+Enterprise-Ready;Sales+%7C+Technical+%7C+Pricing+Intelligence;When+millions+are+on+the+line%2C+speed+is+everything." alt="Typing SVG" />
 
-🚀 Faster Bids • 📊 Smarter Decisions • 🤝 Sales–Tech–Finance Alignment
+[![React](https://img.shields.io/badge/React-Modern_UI-61DAFB?logo=react&logoColor=white)]
+[![FastAPI](https://img.shields.io/badge/FastAPI-High_Performance-009688?logo=fastapi&logoColor=white)]
+[![AI](https://img.shields.io/badge/Multi--Agent_AI-Orchestrated-purple)]
+[![EY](https://img.shields.io/badge/EY-Techathon-gold)]
+
+**[📽 Demo Walkthrough] • [📄 Sample Final Bid PDF] • [📧 Contact Team]**
 
 </div>
 
 ---
 
-## 🎯 Executive Summary
+## 🎯 **The Problem**
 
-In the **$10B+ global B2B RFP market**, speed is not just an advantage — **it is survival**.
+<h2 align="center" style="font-weight:800; font-size:30px;">
+  In B2B RFPs, delay isn’t inefficiency — it’s lost revenue.
+</h2>
 
-Today, manual RFP handling delays bid responses by **up to three weeks**, causing enterprises to miss high-value opportunities worth millions. Industry data shows that **over 90% of winning bids are driven by timely and precise responses**, yet inefficiencies in manual workflows reduce success rates by nearly **40%**, translating into **tens of millions in lost revenue annually**.
+Manual RFP handling dominates a **$10B+ B2B market**, where high-value bids are delayed by **weeks**, evaluated by **gut feeling**, and executed across **siloed teams**.
 
-### 💡 Our Solution
+<table>
+<tr>
+<td width="50%">
 
-We introduce a **Multi-Agent AI Ecosystem** that automates the entire B2B RFP lifecycle — from discovery to final bid generation.
+**⚠️ The Reality**
+- RFPs parsed manually
+- Specs checked in isolation
+- Pricing done last-minute
+- No explainability
+- Reactive bidding culture
 
-Specialized AI agents operate in parallel under a central **Orchestrator**, transforming fragmented, manual processes into a **real-time, data-driven RFP engine**.  
-What once took **weeks** is now completed in **minutes**, with higher accuracy, transparency, and win probability.
+</td>
+<td width="50%">
 
-### 📈 Impact Created
+**📉 The Impact**
+- ⏳ 2–3 week response delays
+- ❌ 40% lower win rates
+- 💸 Tens of millions lost annually
+- 🚫 Missed deadlines
+- 🔄 Rejected or infeasible bids
 
-- ⚡ **3× faster RFP responses** — minutes instead of days
-- 📊 **30% increase in win rate** due to accuracy & speed
-- 🚀 **2× business scalability** — handle more RFPs without adding headcount
-- 🧠 Reduced human error and last-minute reactive bidding
+</td>
+</tr>
+</table>
 
-### 👥 Who Uses This?
-
-- B2B Industrial Manufacturers  
-- OEM Suppliers & EPC Contractors  
-- Enterprise Sales & Bid Management Teams  
-- Organizations responding to Infrastructure & Government RFPs  
-
----
-
-## 🧩 Problem Statement
-
-**Target Industry:** FMCG – Wires & Cables  
-**Business Type:** B2B  
-
-### User Groups
-- Sales & Tendering Teams  
-- Technical / Engineering Teams  
-- Pricing & Commercial Teams  
-- Management & Strategy Teams  
-
-### Core Problem
-
-- RFPs are complex, unstructured PDFs
-- Technical feasibility checks are manual and slow
-- Pricing calculations are siloed and error-prone
-- No unified decision system across departments
-
-In high-value B2B deals:  
-> **Velocity = Survival**
+> *In high-value B2B deals, velocity = survival.*
 
 ---
 
-## 🧠 Solution Overview — Multi-Agent Architecture
+## 💡 **Meet the AI RFP Analyzer**
 
-Our system uses **specialized AI agents**, each focused on one intelligence dimension, coordinated by a central orchestrator.
+**A multi-agent AI ecosystem that converts raw RFP documents into clear, ranked, and priced business decisions — in minutes.**
 
-### 🧑‍💼 Sales Agent
-- Scans **emails & web portals**
-- Extracts and ranks RFPs
-- Scores urgency, value, and relevance
-- Shortlists **Top-priority RFPs**
-- ❌ Does NOT perform technical comparison
+<div align="center">
 
-### 🧠 Main Orchestrator (Core Brain)
-- Receives shortlisted RFPs
-- Selects **one RFP** for deep processing
-- Coordinates Technical & Pricing Agents
-- Resolves conflicts
-- Produces final decision output
+| ❌ Traditional RFP Handling | ✅ AI RFP Analyzer |
+|----------------------------|------------------|
+| Manual reading | Automated parsing |
+| Siloed teams | Unified intelligence |
+| Guess-based pricing | Rule-driven pricing |
+| Slow responses | Real-time decisions |
+| Black-box choices | Explainable outcomes |
 
-### 🔧 Technical Agent
-- Parses RFP PDFs
-- Compares specs with OEM SKU datasheets
-- Finds **Top-3 matching SKUs**
-- Calculates **Spec Match %**
-- Selects **best-fit SKU**
-- Identifies technical gaps (if any)
+</div>
 
-> Confirms *what* product to offer — not whether to bid
-
-### 💰 Pricing Agent
-- Receives selected SKUs
-- Applies pricing & test rules
-- Calculates:
-  - Material cost
-  - Testing & service cost
-  - Logistics & packaging
-  - Final bid value
-
-### 📦 Final Orchestrator Output
-- Merges technical + commercial intelligence
-- Generates **final bid JSON**
-- Auto-creates **Final Bid PDF**
-- Ready for **one-click download & submission**
+**From reading documents to making decisions — our AI thinks like an enterprise.**
 
 ---
 
-## 🔁 End-to-End Data Flow
+## 👥 **Who Uses This**
 
+<div align="center">
+
+| 🧑‍💼 Sales Teams | 🧑‍🔧 Technical Teams | 💰 Pricing Teams | 🧑‍💼 Management |
+|:---:|:---:|:---:|:---:|
+| Faster bid qualification | Spec feasibility | Margin-safe pricing | Win-rate visibility |
+
+</div>
+
+Industries:
+- FMCG (Wires & Cables)
+- OEM Suppliers
+- EPC Contractors
+- Infrastructure & Government Bids
+
+---
+
+## 🧠 **Multi-Agent Architecture**
+
+<div align="center">
+
+```mermaid
+graph LR
+    A[RFP PDFs<br/>Email / Web] --> B[🧑‍💼 Sales Agent]
+    B --> C[🧠 Main Orchestrator]
+
+    C --> D[🔧 Technical Agent]
+    C --> E[💰 Pricing Agent]
+
+    D --> F[📊 Spec Match + Top 3 SKUs]
+    E --> G[💵 Cost Breakdown]
+
+    F --> C
+    G --> C
+
+    C --> H[📄 Final Bid Response PDF]
